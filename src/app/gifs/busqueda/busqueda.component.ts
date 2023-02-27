@@ -8,9 +8,7 @@ import { GifsServicesService } from '../servisGifs/gifs-services.service';
 })
 export class BusquedaComponent {
 
-  constructor(private _servGifsPost : GifsServicesService){
-
-  }
+  constructor(private _servGifsPost : GifsServicesService){}
 
 @ViewChild('txtbuscar')  txtbuscar!:ElementRef<HTMLInputElement>;
 
@@ -20,6 +18,7 @@ export class BusquedaComponent {
  
     this._servGifsPost.addHistorial(busQueda.value);
     busQueda.value = '';
+
 
   }
 

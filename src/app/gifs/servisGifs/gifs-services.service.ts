@@ -20,7 +20,6 @@ export class GifsServicesService {
     if(!this._hisorial.includes(query)){
       if(this._hisorial.length < 4){
         this._hisorial.unshift(query);
-        //console.log(this._hisorial);
       }else{
         console.log("Ya gastaste tus limites de add")
       }
