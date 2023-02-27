@@ -10,7 +10,7 @@ export class GifsServicesService {
   private _hisorial : string [] = [];
 
   getHistorial(){
-    return this._hisorial;
+    return [...this._hisorial];
   }
 
   addHistorial(query:string){
@@ -18,8 +18,13 @@ export class GifsServicesService {
     query = query.trim().toLocaleLowerCase();
 
     if(!this._hisorial.includes(query)){
-      this._hisorial.unshift(query);
-      console.log(this._hisorial);
+      if(this._hisorial.length < 4){
+        this._hisorial.unshift(query);
+        //console.log(this._hisorial);
+      }else{
+        console.log("Ya gastaste tus limites de add")
+      }
+
     }
 
   }
