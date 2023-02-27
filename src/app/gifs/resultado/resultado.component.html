@@ -1,1 +1,12 @@
-<p>resultado works!</p>
+<div class="row">
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 p-2" *ngFor="let xt of mostrar">
+        <div class="card text-bg-dark" >
+            <img [src]="xt.images.downsized_medium.url" class="card-img-top" alt="...">
+            <div class="card-img-overlay">
+              <h5 class="card-title">{{xt.title}}</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small>Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+    </div>
+</div>
