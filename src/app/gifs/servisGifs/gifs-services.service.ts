@@ -36,7 +36,7 @@ export class GifsServicesService {
       params : new HttpParams()
       .set('api_key', this.api_key)
       .set('q', query)
-      .set('limit', '10')
+      .set('limit', '20')
       .set('offset', '0')
       .set('rating', 'g')
       .set('lang', 'en')
