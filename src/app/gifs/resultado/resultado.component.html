@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 p-2" *ngFor="let xt of mostrar">
+<div class="card-columns mt-3">
+    <div *ngFor="let xt of mostrar">
         <div class="card text-bg-dark" >
             <img [src]="xt.images.downsized_medium.url" class="card-img-top" alt="...">
             <div class="card-img-overlay">
@@ -9,4 +9,5 @@
             </div>
         </div>
     </div>
-</div>
+
+  </div>

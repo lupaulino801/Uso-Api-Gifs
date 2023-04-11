@@ -10,10 +10,10 @@ export class GifsServicesService {
   private _hisorial : string [] = [];
   public rest:any  [] = [];
 
-  constructor(private http: HttpClient) { }
-
-
- 
+  constructor(private http: HttpClient) {
+    this._hisorial = JSON.parse(localStorage.getItem('hitorial_busqueda') || '[]'); 
+    this.rest =  JSON.parse(localStorage.getItem('resultado_busqueda') || '[]'); 
+   }
 
   getHistorial(){
     return [...this._hisorial];
@@ -21,18 +21,17 @@ export class GifsServicesService {
 
   addHistorial(query:string){
 
-    query = query.trim().toLocaleLowerCase();   // eliminamos los espacion con trim y pasamos a minutclas coon toLocaleLowerCase
+    query = query.trim().toLocaleLowerCase();  
 
     if(!this._hisorial.includes(query)){   // verificamos si existe el arreglo
-      if(this._hisorial.length < 4){    // esto limita hasta 4 el registro
+   // esto limita hasta 4 el registro
       this._hisorial.unshift(query);    // agregarmos al principio del arreglo con unshift
-      }else{
-        console.log("Ya gastaste tus limites de add")   // si pasa el registro de 4 da este mensaje
-      }
+      this._hisorial = this._hisorial.splice(0,10);
+      localStorage.setItem('hitorial_busqueda', JSON.stringify(this._hisorial));
 
-    }
+   }
 
-    const parametro = {     // forma de como pasarle parametros a una ruta   
+    const parametro = {  
       params : new HttpParams()
       .set('api_key', this.api_key)
       .set('q', query)
@@ -42,23 +41,11 @@ export class GifsServicesService {
       .set('lang', 'en')
     }
 
-    // const HttpOt = {    // da error de cord
-    //   headers : new HttpHeaders({
-    //     'api_key': this.api_key,
-    //     'q': query,
-    //     'limit': '10',
-    //     'offset': '0',
-    //     'rating': 'g',
-    //     'lang': 'en'
-  
-    //   })
-  
-    // } 
     this.http.get(`${this.url}`, parametro)
           .subscribe((resp:any)=>{
              this.rest = resp.data;
-             console.log(this.rest);
-          })
+             localStorage.setItem('resultado_busqueda', JSON.stringify(this.rest));
+    })
    
 
   }

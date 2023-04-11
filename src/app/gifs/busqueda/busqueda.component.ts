@@ -10,16 +10,12 @@ export class BusquedaComponent {
 
   constructor(private _servGifsPost : GifsServicesService){}
 
-@ViewChild('txtbuscar')  txtbuscar!:ElementRef<HTMLInputElement>;
+  @ViewChild('txtbuscar')  txtbuscar!:ElementRef<HTMLInputElement>;
 
   buscar(){
-
     const  busQueda = this.txtbuscar.nativeElement;
- 
     this._servGifsPost.addHistorial(busQueda.value);
     busQueda.value = '';
-
-
   }
 
 }
