@@ -11,8 +11,8 @@ export class GifsServicesService {
   public rest:any  [] = [];
 
   constructor(private http: HttpClient) {
-    this._hisorial = JSON.parse(localStorage.getItem('hitorial_busqueda') || '[]'); 
-    this.rest =  JSON.parse(localStorage.getItem('resultado_busqueda') || '[]'); 
+    this._hisorial = JSON.parse(localStorage.getItem('hitorial_busqueda') || '[]');
+    this.rest =  JSON.parse(localStorage.getItem('resultado_busqueda') || '[]');
    }
 
   getHistorial(){
@@ -21,7 +21,7 @@ export class GifsServicesService {
 
   addHistorial(query:string){
 
-    query = query.trim().toLocaleLowerCase();  
+    query = query.trim().toLocaleLowerCase();
 
     if(!this._hisorial.includes(query)){   // verificamos si existe el arreglo
    // esto limita hasta 4 el registro
@@ -31,11 +31,11 @@ export class GifsServicesService {
 
    }
 
-    const parametro = {  
+    const parametro = {
       params : new HttpParams()
       .set('api_key', this.api_key)
       .set('q', query)
-      .set('limit', '20')
+      .set('limit', '5')
       .set('offset', '0')
       .set('rating', 'g')
       .set('lang', 'en')
@@ -46,14 +46,14 @@ export class GifsServicesService {
              this.rest = resp.data;
              localStorage.setItem('resultado_busqueda', JSON.stringify(this.rest));
     })
-   
+
 
   }
 
- 
 
 
-  
-  
+
+
+
 
 }
